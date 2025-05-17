@@ -1,0 +1,120 @@
+*{
+    margin: 0;
+    padding:0 ;
+}
+
+body{
+    .cookie-regular {
+  font-family: "Cookie", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+}
+.navbar{
+    background-color: #ffb6b9;
+    padding: 10px;
+}
+.container{
+    padding: 10px;
+}
+.book-container{
+    padding: 15px;
+    width: 40%;
+    background-color:#a3b8d3 ;
+    color: cornsilk;
+    margin: 30px;
+    display: inline-block;
+    vertical-align: top;
+}
+.book-container h2{
+    color: #3a333a;
+}
+.book-container button{
+    background-color:#ffb6b9 ;
+    color: brown;
+    border-radius: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 10px;
+}
+
+.add-button{
+    background-color:#b39eb5 ;
+    color: black ;
+    border-radius: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 60px;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+}
+.popup-overlay{
+    background-color: black;
+    opacity: 0.8;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    display: none;
+}
+
+.popup-box {
+   background-color: #e3f2fd;
+ border: 1px solid #90caf9;
+  color: #0d47a1;
+  padding: 40px;
+  border-radius: 20px;
+  width: 45%;
+  position: absolute;
+  top: 20%;
+  left: 30%;
+  z-index: 2;
+font-family: 'Segoe UI', sans-serif;
+display: none;
+
+}
+  
+.popup-box.input{
+    background: transparent;
+    width: 100%;
+    margin: 5px;
+    padding: 5px;
+    font-size: 20px;
+    border-bottom: 10px solid #90caf9;
+}
+
+.popup-box textarea{
+        background: transparent;
+    width: 100%;
+    margin: 5px;
+    padding: 5px;
+    font-size: 20px;
+    border: 10px solid #90caf9;
+}
+.popup-box.input:placeholder
+{
+    color: black;
+    
+}
+.popup-box.textarea:placeholder
+{
+    color: black;
+    
+}
+.popup-box button{
+    background-color: #bbdefb ;
+    padding-left:20px ;
+    padding-right: 20px;
+    border: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color:#0d47a1 ;
+    margin: 5px;
+}
