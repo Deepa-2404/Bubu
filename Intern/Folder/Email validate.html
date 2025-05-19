@@ -1,0 +1,23 @@
+<body>
+  <h2>EmailValidity!!</h2>
+
+</body>
+
+  <input type="email" id="emailInput" required placeholder="Enter your email">
+  <button onclick="validateEmail()">Check Email</button>
+
+  <p id="emailResult"></p>
+
+  <script>
+    function validateEmail() {
+      const email = document.getElementById("emailInput");
+
+      if (email.checkValidity())
+       {
+        document.getElementById("emailResult").innerText = "Valid email address";
+      }
+       else {
+        document.getElementById("emailResult").innerText = "Invalid email address";
+       }
+    }
+  </script>

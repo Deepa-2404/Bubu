@@ -1,0 +1,11 @@
+<div class="block">
+  <h2>Display Date and Time</h2>
+  <button onclick="showDateTime()">Show Date & Time</button>
+  <p id="datetime"></p>
+</div>
+<script>
+  function showDateTime() 
+  {
+    document.getElementById("datetime").innerText = new Date().toString();
+  }
+</script>
