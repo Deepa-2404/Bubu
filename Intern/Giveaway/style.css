@@ -1,0 +1,29 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 50px;
+  background: #f0f0f0;
+}
+
+h1 {
+  color: #333;
+}
+
+.timer {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.timer div {
+  background: #333;
+  color: #fff;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.timer span {
+  font-size: 2em;
+  display: block;
+}
