@@ -1,37 +1,27 @@
-function displayMenu(category, containerId) {
-  const container = document.getElementById(containerId);
-  container.innerHTML = ''; // Clear any previous content
+async function fetchMenu() {
+  try {
+    const response = await fetch('/api/menu');
+    const data = await response.json();
 
-  foodMenu[category].forEach(item => {
-    const card = document.createElement('div');
-    card.className = 'menu-card';
+    Object.keys(data).forEach(category => {
+      const container = document.getElementById(`${category}-container`);
+      data[category].forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'menu-card';
 
-    if (item.img) {
-      const img = document.createElement('img');
-      img.src = item.img;
-      img.alt = item.name;
-      card.appendChild(img);
-    }
+        card.innerHTML = `
+          <img src="${item.img}" alt="${item.name}">
+          <h3>${item.name}</h3>
+          <p>${item.desc}</p>
+          <p class="price">₹${item.price}</p>
+        `;
 
-    const name = document.createElement('h3');
-    name.textContent = item.name;
-    card.appendChild(name);
-
-    const desc = document.createElement('p');
-    desc.textContent = item.desc;
-    card.appendChild(desc);
-
-    const price = document.createElement('p');
-    price.className = 'price';
-    price.textContent = '₹' + item.price;
-    card.appendChild(price);
-
-    container.appendChild(card);
-  });
+        container.appendChild(card);
+      });
+    });
+  } catch (err) {
+    console.error('❌ Failed to fetch menu:', err);
+  }
 }
 
-// Display all categories
-displayMenu('breakfast', 'breakfast-container');
-displayMenu('shakes', 'shakes-container');
-displayMenu('lunch', 'lunch-container');
-displayMenu('dinner', 'dinner-container');
+fetchMenu();
