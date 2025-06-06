@@ -11,14 +11,14 @@ const db = mysql.createConnection({
 
 db.connect(err => {
   if (err) {
-    console.error('❌ DB Connection Failed:', err);
+    console.error(' DB Connection Failed:', err);
     return;
   }
-  console.log('✅ Connected to XAMPP MySQL');
+  console.log('Connected to XAMPP MySQL');
 
   db.query('SELECT * FROM menu', (err, results) => {
     if (err) {
-      console.error('❌ Query Error:', err);
+      console.error(' Query Error:', err);
       return;
     }
 

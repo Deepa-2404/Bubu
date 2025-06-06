@@ -1,10 +1,14 @@
+const API_URL = 'http://localhost:3000/api/menu'; // full URL with port
+
 async function fetchMenu() {
   try {
-    const response = await fetch('/api/menu');
+    const response = await fetch(API_URL);
     const data = await response.json();
 
     Object.keys(data).forEach(category => {
       const container = document.getElementById(`${category}-container`);
+      if (!container) return; // skip unknown categories
+
       data[category].forEach(item => {
         const card = document.createElement('div');
         card.className = 'menu-card';

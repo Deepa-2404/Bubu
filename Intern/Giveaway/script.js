@@ -1,4 +1,4 @@
-let endDate = new Date("May 31, 2025 11:30:00").getTime();
+let endDate = new Date("june 5, 2025 11:30:00").getTime();
 
 function updateCountdown() {
   let now = new Date().getTime();

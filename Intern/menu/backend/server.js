@@ -1,49 +1,55 @@
 const express = require('express');
-const mysql = require('mysql2');
+const mysql = require('mysql');
 const cors = require('cors');
-const path = require('path');
-
 const app = express();
-app.use(cors());
-app.use(express.static(path.join(__dirname, 'public'))); // Serve frontend
+const port = 3000;
 
+app.use(cors());
+app.use(express.json());
+
+// MySQL connection config (change password if needed)
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'admin123', // Leave blank for default XAMPP
-  database: 'food_menu'
+  password: 'admin123', // your MySQL root password or '' if none
+  database: 'food_menu',
 });
 
+db.connect(err => {
+  if (err) {
+    console.error('❌ DB connection error:', err);
+    return;
+  }
+  console.log('✅ Connected to MySQL database');
+});
+
+// API route to get menu data
 app.get('/api/menu', (req, res) => {
-  db.query('SELECT * FROM menu', (err, results) => {
+  const query = "SELECT * FROM menu";
+  db.query(query, (err, results) => {
     if (err) {
-      console.error('❌ DB error:', err);
-      return res.status(500).json({ error: err });
+      console.error('❌ Error fetching menu:', err);
+      return res.status(500).json({ error: 'Database query error' });
     }
 
-    const menu = {
-      breakfast: [],
-      lunch: [],
-      shakes: [],
-      dinner: []
-    };
+    // Transform results to group by category
+    const menuByCategory = results.reduce((acc, item) => {
+      const category = item.category || 'others';
+      if (!acc[category]) acc[category] = [];
+      acc[category].push({
+        id: item.id,
+        name: item.name,
+        desc: item.description || '',  // assuming you have description column
+        price: item.price,
+        img: item.image_url || 'images/default.jpg', // fallback image path
+      });
+      return acc;
+    }, {});
 
-    results.forEach(item => {
-      const cat = item.category.toLowerCase();
-      if (menu[cat]) {
-        const entry = {
-          name: item.name,
-          price: item.price,
-          desc: item.description || '',
-          img: item.image_url
-        };
-        menu[cat].push(entry);
-      }
-    });
-
-    console.log('📦 MENU FROM DB:\n', JSON.stringify(menu, null, 2)); // Output in terminal
-    res.json(menu);
+    res.json(menuByCategory);
   });
 });
 
-app.listen(3000, () => console.log('✅ Server running on http://localhost:3000'));
+app.listen(port, () => {
+  console.log(`Server listening at http://localhost:${port}`);
+});
