@@ -1,9 +1,12 @@
-const API_URL = 'http://localhost:3000/api/menu'; // full URL with port
+const API_URL = 'http://localhost:3001/api/menu'; // full URL with port
 
 async function fetchMenu() {
   try {
     const response = await fetch(API_URL);
     const data = await response.json();
+
+    // ✅ Add this line to inspect what your backend sent
+    console.log("Fetched Menu Data:", data);
 
     Object.keys(data).forEach(category => {
       const container = document.getElementById(`${category}-container`);
